@@ -13,10 +13,10 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://studio.asyncapi.com/">
+    <meta property="og:url" content="https://localhost:3000/">
     <meta property="og:title" content="AsyncAPI Studio">
     <meta property="og:description" content="Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document.">
-    <meta property="og:image" content="%PUBLIC_URL%/img/meta-studio-og-image.jpeg">
+    <meta property="og:image" content="https://localhost:3000/*.png?theme=light&base64=YXN5bmNhcGk6ICcyLjIuMCcKaW5mbzoKICB0aXRsZTogQWNjb3VudCBTZXJ2aWNlCiAgdmVyc2lvbjogMS4wLjAKICBkZXNjcmlwdGlvbjogVGhpcyBzZXJ2aWNlIGlzIGluIGNoYXJnZSBvZiBwcm9jZXNzaW5nIHVzZXIgc2lnbnVwcwpjaGFubmVsczoKICB1c2VyL3NpZ25lZHVwOgogICAgc3Vic2NyaWJlOgogICAgICBtZXNzYWdlOgogICAgICAgICRyZWY6ICcjL2NvbXBvbmVudHMvbWVzc2FnZXMvVXNlclNpZ25lZFVwJwpjb21wb25lbnRzOgogIG1lc3NhZ2VzOgogICAgVXNlclNpZ25lZFVwOgogICAgICBwYXlsb2FkOgogICAgICAgIHR5cGU6IG9iamVjdAogICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgICBkaXNwbGF5TmFtZToKICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBOYW1lIG9mIHRoZSB1c2VyCiAgICAgICAgICBlbWFpbDoKICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIGZvcm1hdDogZW1haWwKICAgICAgICAgICAgZGVzY3JpcHRpb246IEVtYWlsIG9mIHRoZSB1c2Vy" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -29,6 +29,12 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon-194x194.png" />
 
     <title>AsyncAPI Studio</title>
+    <script>
+      const params = new URLSearchParams(window.location.search)
+      if (params.has('base64')) {
+        document.querySelector('meta[property="og:image"]').setAttribute("content", "https://example.com/?base64=" + params.get('base64'));
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
