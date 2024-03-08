@@ -31,10 +31,14 @@
 
     <title>AsyncAPI Studio</title>
     <script>
-      const params = new URLSearchParams(window.location.search)
-      if (params.has('base64')) {
-        document.querySelector('meta[property="og:image"]').setAttribute("content", "https://testjiehuimaasyncapi.netlify.app/?base64=" + params.get('base64'));
-      }
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('base64')) {
+          const base64 = params.get('base64');
+          const ogImageUrl = `https://og-image-test-jiehui.netlify.app/api/og?base64Url=${encodeURIComponent(base64)}`;
+          document.querySelector('meta[property="og:image"]').setAttribute("content", ogImageUrl);
+        }
+      });
     </script>
 
   </head>
