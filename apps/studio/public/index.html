@@ -25,16 +25,16 @@
     <meta property="twitter:title" content="AsyncAPI Studio">
     <meta property="twitter:description" content="Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document.">
     <meta property="twitter:image" content="%PUBLIC_URL%/img/meta-studio-og-image.jpeg">
-
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon-194x194.png" />
-
-    <title>AsyncAPI Studio</title>
     <script>
       const params = new URLSearchParams(window.location.search)
       if (params.has('base64')) {
         document.querySelector('meta[property="og:image"]').setAttribute("content", "https://og-image-test-jiehui.netlify.app/api/og?base64=" + params.get('base64'));
       }
     </script>
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon-194x194.png" />
+
+    <title>AsyncAPI Studio</title>
 
   </head>
   <body>
