@@ -13,7 +13,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://og-image-test-jiehui.netlify.app">
+    <meta property="og:url" content="https://og-image-test-jiehui.netlify.app/api/og">
     <meta property="og:title" content="AsyncAPI Studio">
     <meta property="og:description" content="Studio for AsyncAPI specification, where you can validate, view preview documentation, and generate templates from AsyncAPI document.">
     <meta property="og:image" content="https://og-image-test-jiehui.netlify.app/api/og" />
@@ -29,12 +29,7 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon-194x194.png" />
 
     <title>AsyncAPI Studio</title>
-    <script>
-      const params = new URLSearchParams(window.location.search)
-      if (params.has('base64')) {
-        document.querySelector('meta[property="og:image"]').setAttribute("content", "https://teststudiojiehuima.netlify.app/?base64=" + params.get('base64'));
-      }
-    </script>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
