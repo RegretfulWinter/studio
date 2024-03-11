@@ -6,3 +6,6 @@ build
 dist
 .turbo
 .env
+
+# Local Netlify folder
+.netlify
