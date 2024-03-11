@@ -10,12 +10,22 @@ export default async (request, context) => {
   // Replace placeholder or append to the HTML
   if (base64) {
     const metaTagContent = `https://og-image-test-jiehui.netlify.app/api/og?base64=${base64}`;
-    html = html.replace(
-      '<head>',
-      `<head><meta property="og:image:url" content="${metaTagContent}">`
-    );
+    const metaTagPattern = `<meta property="og:image:url" content="/img/meta-studio-og-image.jpeg" />`;
+    const newMetaTag = `<meta property="og:image:url" content="${metaTagContent}" />`;
+
+    html = html.replace(metaTagPattern, newMetaTag);
+
+    console.log(`Injected meta tag for base64: ${base64}`);
   }
 
+
   // Return the modified response
-  return new Response(html, response);
+  return new Response(html, {
+    ...response,
+    headers: {
+      ...response.headers,
+      // Add any custom headers you want here
+      'X-Edge-Function': 'active'
+    }
+  });
 };
