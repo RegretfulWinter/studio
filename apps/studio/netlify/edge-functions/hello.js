@@ -23,13 +23,16 @@ export default async (request, context) => {
 
   // Return the modified response
   return new Response(html, {
-    ...response,
+    status: response.status, // Keep the original response status code
     headers: {
       ...response.headers,
-      // Add any custom headers you want here
-      'X-Edge-Function': 'active'
+      'Content-Type': 'text/html', // Ensure the content type is text/html
+      'X-Edge-Function': 'active' // Your custom header
     }
   });
+  
 };
+
+
 
 export const config = { path: "/*" };
