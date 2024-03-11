@@ -44,7 +44,8 @@ export default async (request, context) => {
     // If no base64 query parameter, return the original response
     return response;
   }
-};
 
+
+};
 
 export const config = { path: "/*" };
