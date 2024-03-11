@@ -1,6 +1,6 @@
 [[edge_functions]]
   function = "hello"
-  path = "/public/index.html"
+  path = "/*"
 
 [[redirects]]
   from = "public/img/*"

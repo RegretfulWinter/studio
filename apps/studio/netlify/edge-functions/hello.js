@@ -18,7 +18,7 @@ export default async (request, context) => {
     const metaTagContent = `https://og-image-test-jiehui.netlify.app/api/og?base64=${base64}`;
     const metaTagPattern = /<meta property="og:image:url" content="\/img\/meta-studio-og-image.jpeg" \/>/;
     const modifiedHtml = html.replace(metaTagPattern, `<meta property="og:image:url" content="${metaTagContent}" />`);
-
+    console.log("replaced");
     return new Response(modifiedHtml, {
       // Copy over the status and headers from the original response
       status: response.status,
@@ -35,4 +35,4 @@ export default async (request, context) => {
 
 
 
-export const config = { path: "/public/index.html" };
+export const config = { path: "/*" };
