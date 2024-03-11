@@ -32,4 +32,4 @@ export default async (request, context) => {
   });
 };
 
-export const config = { path: "/" };
+export const config = { path: "/*" };
