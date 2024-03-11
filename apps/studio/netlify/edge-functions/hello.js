@@ -24,12 +24,11 @@ export default async (request, context) => {
   if (base64) {
     const metaTagContent = `https://og-image-test-jiehui.netlify.app/api/og?base64=${base64}`;
     console.log('New meta tag content:', metaTagContent);
-
-    const metaTagPattern = /<meta property="og:image:url" content="\/img\/meta-studio-og-image\.jpeg">/;
+    const metaTagPattern = `/img\/meta-studio-og-image.jpeg`;
     // Seach for the meta tag in the HTML content
-    const metaTagExists = metaTagPattern.test(html);
+    const metaTagExists = html.includes(metaTagPattern);
     console.log(metaTagExists);
-    const modifiedHtml = html.replace(metaTagPattern, `<meta property="og:image:url" content="${metaTagContent}" />`);
+    const modifiedHtml = html.replace(metaTagPattern, `${metaTagContent}`);
     console.log('Modified HTML:', modifiedHtml.substring(0, 3500)); // Log the first 500 characters of the modified HTML
 
     return new Response(modifiedHtml, {
