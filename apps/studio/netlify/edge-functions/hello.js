@@ -25,7 +25,7 @@ export default async (request, context) => {
     const metaTagContent = `https://og-image-test-jiehui.netlify.app/api/og?base64=${base64}`;
     console.log('New meta tag content:', metaTagContent);
 
-    const metaTagPattern = /<meta property="og:image:url" content="[^"]+" \/>/;
+    const metaTagPattern = /<meta property="og:image:url" content="\/img\/meta-studio-og-image\.jpeg">/;
     // Seach for the meta tag in the HTML content
     const metaTagExists = metaTagPattern.test(html);
     console.log(metaTagExists);
