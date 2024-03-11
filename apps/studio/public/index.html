@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script>
+    const params = new URLSearchParams(window.location.search)
+    if (params.has('base64')) {
+      document.querySelector('meta[property="og:image:url"]').setAttribute("content", "https://og-image-test-jiehui.netlify.app/api/og?base64=" + params.get('base64'));
+    }
+  </script>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -30,12 +36,6 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon-194x194.png" />
 
     <title>AsyncAPI Studio</title>
-    <script>
-      const params = new URLSearchParams(window.location.search)
-      if (params.has('base64')) {
-        document.querySelector('meta[property="og:image:url"]').setAttribute("content", "https://og-image-test-jiehui.netlify.app/api/og?base64=" + params.get('base64'));
-      }
-    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
