@@ -1,3 +1,18 @@
 [[edge_functions]]
   function = "hello"
-  path = "/*"
+  path = "/public/index.html"
+
+[[redirects]]
+  from = "public/img/*"
+  to = "public/img/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/src/*"
+  to = "/src/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/js/*"
+  to = "/js/:splat"
+  status = 200

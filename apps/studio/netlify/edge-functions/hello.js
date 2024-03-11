@@ -1,38 +1,38 @@
 export default async (request, context) => {
-  // Access query parameters
+  // Obtain the response from the original request
+  const response = await context.next();
+
+  // Ensure that we only modify HTML responses
+  const contentType = response.headers.get('Content-Type') || '';
+  if (!contentType.includes('text/html')) {
+    // If it's not an HTML response, return it unmodified
+    return response;
+  }
+
+  // Only continue processing if the content type is HTML
+  const html = await response.text();
   const url = new URL(request.url);
   const base64 = url.searchParams.get("base64");
 
-  // Modify the HTML response
-  const response = await context.next();
-  let html = await response.text();
-
-  // Replace placeholder or append to the HTML
   if (base64) {
     const metaTagContent = `https://og-image-test-jiehui.netlify.app/api/og?base64=${base64}`;
-    const metaTagPattern = `<meta property="og:image:url" content="/img/meta-studio-og-image.jpeg" />`;
-    const newMetaTag = `<meta property="og:image:url" content="${metaTagContent}" />`;
+    const metaTagPattern = /<meta property="og:image:url" content="\/img\/meta-studio-og-image.jpeg" \/>/;
+    const modifiedHtml = html.replace(metaTagPattern, `<meta property="og:image:url" content="${metaTagContent}" />`);
 
-    html = html.replace(metaTagPattern, newMetaTag);
-
-    console.log(`Injected meta tag for base64: ${base64}`);
+    return new Response(modifiedHtml, {
+      // Copy over the status and headers from the original response
+      status: response.status,
+      headers: {
+        ...response.headers,
+        'Content-Type': 'text/html' // Ensure the content type is HTML
+      }
+    });
   }
-  else {
-    console.log('nothing happend') };
 
-
-  // Return the modified response
-  return new Response(html, {
-    status: response.status, // Keep the original response status code
-    headers: {
-      ...response.headers,
-      'Content-Type': 'text/html', // Ensure the content type is text/html
-      'X-Edge-Function': 'active' // Your custom header
-    }
-  });
-  
+  // If no base64 query parameter, return the original response
+  return response;
 };
 
 
 
-export const config = { path: "/*" };
+export const config = { path: "/public/index.html" };
