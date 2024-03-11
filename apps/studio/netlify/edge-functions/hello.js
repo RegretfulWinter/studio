@@ -17,6 +17,8 @@ export default async (request, context) => {
 
     console.log(`Injected meta tag for base64: ${base64}`);
   }
+  else {
+    console.log('nothing happend') };
 
 
   // Return the modified response
@@ -29,3 +31,5 @@ export default async (request, context) => {
     }
   });
 };
+
+export const config = { path: "/" };
