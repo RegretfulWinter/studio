@@ -18,7 +18,7 @@ export default async (request, context) => {
     const metaTagContent = `https://og-image-test-jiehui.netlify.app/api/og?base64=${base64}`;
     const metaTagPattern = /<meta property="og:image:url" content="\/img\/meta-studio-og-image.jpeg" \/>/;
     const modifiedHtml = html.replace(metaTagPattern, `<meta property="og:image:url" content="${metaTagContent}" />`);
-    console.log("replaced");
+    console.log(modifiedHtml);
     return new Response(modifiedHtml, {
       // Copy over the status and headers from the original response
       status: response.status,
@@ -27,6 +27,7 @@ export default async (request, context) => {
         'Content-Type': 'text/html' // Ensure the content type is HTML
       }
     });
+    
   }
 
   // If no base64 query parameter, return the original response
