@@ -20,15 +20,22 @@ export default async (request, context) => {
   const base64 = url.searchParams.get("base64");
   console.log('Base64 parameter:', base64);
 
+  const width = "1200"; // Specify the width
+  const height = "630"; // Specify the height
+  
+  const widthMetaTag = `<meta property="og:image:width" content="${width}">`;
+  const heightMetaTag = `<meta property="og:image:height" content="${height}">`;
+
   if (base64) {
     const metaTagContent = `https://og-image-test-jiehui.netlify.app/api/og?base64=${base64}`;
     console.log('New meta tag content:', metaTagContent);
     const metaTagPattern = `/img\/meta-studio-og-image.jpeg`;
     const metaTagExists = html.includes(metaTagPattern);
     console.log(metaTagExists);
-    const modifiedHtml = html.replace(metaTagPattern, `${metaTagContent}`);
+    let modifiedHtml = html.replace(metaTagPattern, `${metaTagContent}`);
+    modifiedHtml = modifiedHtml.replace('</head>', `${widthMetaTag}\n${heightMetaTag}\n</head>`);
     // Log part of the modified HTML for debugging (avoid logging the whole content to prevent excessive log size)
-    console.log('Modified HTML:', modifiedHtml.substring(0, 3500));
+    console.log('Modified HTML:', modifiedHtml.substring(0, 5000));
 
     return new Response(modifiedHtml, {
       status: originalResponse.status,
